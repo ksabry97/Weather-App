@@ -1,0 +1,56 @@
+<div class="search" (submit)="onSubmit()">
+  <form #form="ngForm">
+    <input
+      type="text"
+      [(ngModel)]="cityName"
+      name="city"
+      placeholder="search for city"
+    />
+  </form>
+</div>
+
+<div class="container" *ngIf="weatherData">
+  <div class="upper-data">
+    <img
+      src="../assets/sunny.jpg"
+      alt="sunny day"
+      *ngIf="weatherData.temp > 20"
+    />
+    <img
+      src="../assets/cold.jfif"
+      alt="cold day"
+      *ngIf="weatherData.temp < 20"
+    />
+
+    <div class="upper-data-info">
+      <h1>{{ name }}</h1>
+      <h2>{{ weatherData.temp | number : "1.0-0" }} &deg;C</h2>
+    </div>
+  </div>
+
+  <div class="lower-data">
+    <h1 style="color: white; font-size: 1rem">More information</h1>
+    <div class="lower-data-info">
+      <div class="lower-data-img">
+        <img src="../assets/min-temp.png" alt="minimum temperature" />
+        <p>{{ weatherData.min_temp | number : "1.0-0" }} &deg;C</p>
+      </div>
+      <div class="lower-data-img">
+        <img src="../assets/max-temp.png" alt="minimum temperature" />
+        <p>{{ weatherData.max_temp | number : "1.0-0" }} &deg;C</p>
+      </div>
+      <div class="lower-data-img">
+        <img src="../assets/humidity.png" alt="minimum temperature" />
+        <p>{{ weatherData.humidity }} %</p>
+      </div>
+      <div class="lower-data-img">
+        <img src="../assets/wind.png" alt="minimum temperature" />
+        <p style="margin-left: 0.5rem">
+          {{ weatherData.wind_speed | number : "1.0-0" }} km/h
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
